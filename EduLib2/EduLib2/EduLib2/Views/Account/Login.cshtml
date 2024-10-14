@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Login";
+}
+<!-- ตั้งค่า Title ของ View ให้เป็น "Login" ซึ่งจะแสดงเป็นหัวข้อในหน้าต่างเบราว์เซอร์ -->
+
+
+<div class="container">
+    <form method="post" asp-action="Login">
+        <!-- สร้างฟอร์มเพื่อส่งข้อมูลไปยัง Action Login -->
+        <div class="form-group">
+            <!-- กลุ่มฟอร์มสำหรับ Input ชื่อผู้ใช้ -->
+            <label asp-for="Username" class="control-label"></label> <!-- ป้ายชื่อสำหรับ Input ชื่อผู้ใช้ -->
+            <input asp-for="Username" class="form-control" /> <!-- Input สำหรับชื่อผู้ใช้ -->
+            <span asp-validation-for="Username" class="text-danger"></span> <!-- แสดงข้อความผิดพลาดสำหรับชื่อผู้ใช้ -->
+        </div>
+        <div class="form-group">
+            <!-- กลุ่มฟอร์มสำหรับ Input รหัสผ่าน -->
+            <label asp-for="Password" class="control-label"></label> <!-- ป้ายชื่อสำหรับ Input รหัสผ่าน -->
+            <input asp-for="Password" class="form-control" type="password" /> <!-- Input สำหรับรหัสผ่าน -->
+            <span asp-validation-for="Password" class="text-danger"></span> <!-- แสดงข้อความผิดพลาดสำหรับรหัสผ่าน -->
+        </div>
+        <div class="form-group">
+            <!-- กลุ่มฟอร์มสำหรับปุ่ม Login -->
+            <button type="submit" class="btn btn-primary">Login</button> <!-- ปุ่มเพื่อส่งข้อมูล -->
+        </div>
+    </form>
+</div>

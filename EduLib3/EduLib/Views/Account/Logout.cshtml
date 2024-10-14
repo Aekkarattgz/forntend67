@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Logout";
+}
+<!-- ใช้ ViewData ในการกำหนดชื่อ Title ของหน้าว่า "Logout" เพื่อให้แสดงใน title ของเบราว์เซอร์และ H2 ของหน้า -->
+
+<h2>@ViewData["Title"]</h2>
+<!-- แสดงหัวข้อ H2 ว่า "Logout" เพื่อให้ผู้ใช้ทราบว่าหน้านี้คือหน้าออกจากระบบ -->
+
+<div class="row">
+    <div class="col-md-6">
+        <!-- คำถามยืนยันการออกจากระบบ -->
+        <p>Are you sure you want to log out?</p>
+        <!-- ฟอร์มที่ใช้ส่งคำขอการออกจากระบบผ่าน method="post" -->
+        <form action="/Account/Logout" method="post">
+            <!-- hidden field สำหรับใส่ CSRF token เพื่อป้องกันการโจมตีแบบ CSRF -->
+            
+            <!-- ปุ่มยืนยันการออกจากระบบ -->
+            <div class="form-group">
+                <button type="submit" class="btn btn-danger">Yes, Log me out</button>
+                <!-- ปุ่มยกเลิกที่จะนำผู้ใช้กลับไปที่หน้าแรก -->
+                <a href="/" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>

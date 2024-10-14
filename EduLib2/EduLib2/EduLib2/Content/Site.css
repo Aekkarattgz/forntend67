@@ -1,0 +1,119 @@
+﻿html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+    /* Light Mode */
+body.light-mode {
+    background-color: white;
+    color: black;
+}
+
+    /* Dark Mode */
+body.dark-mode {
+    background-color: #272727;
+    color: white;
+}
+
+/* Navbar specific */
+.navbar-light-mode {
+    background-color: #d6d6d6;
+    color: black;
+}
+
+.navbar-dark-mode {
+    background-color: #121212;
+    color: white;
+}
+
+    .navbar-dark-mode a {
+        color: white;
+        font-size: 20px;
+    }
+
+.navbar-light-mode a {
+    color: black;
+    font-size: 20px;
+}
+/* Light Mode */
+body.light-mode table {
+    background-color: lightgray;
+    color: black;
+    border: 1px solid black;
+}
+
+/* Dark Mode */
+body.dark-mode table {
+    background-color: #333;
+    color: white;
+    border: 1px solid white;
+}
+
+
+.switch {
+    position: relative;
+    display: inline-block;
+    margin-top:10px;
+    width: 60px; /* ความกว้างของสวิตช์ */
+    height: 22px; /* ความสูงของสวิตช์ */
+}
+
+.switch input {
+        display: none; /* ซ่อน checkbox */
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc; /* สีพื้นหลัง */
+    transition: .4s; /* ความเร็วในการเปลี่ยนแปลง */
+}
+
+.slider:before {
+        position: absolute;
+        content: "";
+        height: 18px; /* ความสูงของปุ่มเลื่อน */
+        width: 18px; /* ความกว้างของปุ่มเลื่อน */
+        left: 10px; /* ระยะห่างจากซ้าย */
+        bottom: 2px; /* ระยะห่างจากล่าง */
+        background-color: white; /* สีของปุ่มเลื่อน */
+        transition: .4s; /* ความเร็วในการเปลี่ยนแปลง */
+}
+
+input:checked + .slider {
+    background-color: #2196F3; /* สีพื้นหลังเมื่อเลือก */
+}
+
+input:checked + .slider:before {
+        transform: translateX(26px); /* เลื่อนปุ่มไปขวาเมื่อเลือก */
+}
+
+/* ทำให้มุมของสวิตช์มน */
+.slider.round {
+    border-radius: 34px; /* ทำมุมให้มน */
+}
+
+ .slider.round:before {
+        border-radius: 50%; /* ทำมุมให้มน */
+}

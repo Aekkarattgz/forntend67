@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="utf-8" /> <!-- กำหนดการเข้ารหัสเป็น UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- ตั้งค่าขนาด viewport สำหรับมือถือ -->
+    <title>@ViewBag.Title - My ASP.NET Application</title> <!-- ชื่อเรื่องของหน้า -->
+    @Styles.Render("~/Content/css") <!-- รวม CSS ที่ต้องการใช้งาน -->
+    @Scripts.Render("~/bundles/modernizr") <!-- รวม Modernizr สำหรับการตรวจสอบความสามารถของเบราว์เซอร์ -->
+    <!-- CSS สำหรับ Toggle Switch -->
+    <style>
+        body {
+            display: flex; /* ใช้ Flexbox */
+            flex-direction: column; /* ตั้งค่าทิศทางแนวตั้ง */
+            min-height: 100vh; /* ตั้งค่าความสูงขั้นต่ำของ body เป็น 100vh */
+            margin: 0; /* ลบ margin ของ body */
+        }
+
+        .container {
+            flex: 1; /* ทำให้ container ขยายเต็มพื้นที่ที่เหลือ */
+        }
+
+        .navbar {
+            margin-bottom: 20px; /* เพิ่มระยะห่างด้านล่าง navbar */
+        }
+
+        footer {
+            background-color: #f5f5f5; /* ตั้งสีพื้นหลังของ footer */
+            text-align: center; /* จัดตำแหน่งข้อความใน footer */
+            padding: 10px 0; /* เพิ่ม padding ด้านบนและด้านล่าง */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <!-- สร้าง navbar ที่อยู่ด้านบน -->
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm  border-bottom box-shadow mb-3">
+                <div class="container-fluid">
+                    <!-- คอนเทนเนอร์เพื่อจัดการความกว้าง -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <!-- ปุ่มสำหรับเปิด/ปิด navbar บนมือถือ -->
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" }) <!-- ชื่อแอปพลิเคชันที่เชื่อมโยงไปยังหน้าแรก -->
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <!-- โครงสร้าง navbar ที่สามารถยุบหรือขยาย -->
+                        <ul class="nav navbar-nav">
+                            <!-- เมนูนำทาง -->
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li> <!-- ลิงก์ไปยังหน้าแรก -->
+                            <li>@Html.ActionLink("About", "About", "Home")</li> <!-- ลิงก์ไปยังหน้าข้อมูลเกี่ยวกับ -->
+                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li> <!-- ลิงก์ไปยังหน้าติดต่อ -->
+                        </ul>
+                        <!-- HTML สำหรับ Toggle Switch -->
+                        <label class="switch" style="float: right; margin-left: auto;">
+                            <!-- สวิตช์สำหรับเปลี่ยนโหมด -->
+                            <input type="checkbox" id="modeToggle"> <!-- กล่องเช็คสำหรับการสลับ -->
+                            <span class="slider round"></span> <!-- การแสดงผลสวิตช์ -->
+                        </label>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <div class="container body-content">
+        <!-- คอนเทนเนอร์สำหรับเนื้อหาหลัก -->
+        @RenderBody() <!-- แสดงเนื้อหาของ View ที่เรียกใช้ Layout นี้ -->
+        <hr /> <!-- เส้นแบ่ง -->
+    </div>
+    <footer>
+        <!-- ส่วนท้ายของหน้า -->
+        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p> <!-- ข้อความลิขสิทธิ์ -->
+    </footer>
+
+    <script>
+        // ตรวจสอบการตั้งค่า Dark Mode ใน LocalStorage
+        const toggleSwitch = document.getElementById('modeToggle'); // ค้นหา element สวิตช์
+        const currentTheme = localStorage.getItem('theme'); // ดึงค่าธีมที่เก็บไว้ใน LocalStorage
+
+        // ถ้ามีการตั้งค่าธีมที่เก็บไว้ใน LocalStorage
+        if (currentTheme) {
+            document.body.classList.add(currentTheme); // เพิ่มคลาสธีมที่เก็บไว้ใน body
+
+            // ถ้าธีมเป็น Dark Mode ให้ทำการเช็คสวิตช์
+            if (currentTheme === 'dark-mode') {
+                toggleSwitch.checked = true;
+            }
+        }
+
+        // ฟังก์ชันเพื่อสลับโหมด
+        toggleSwitch.addEventListener('change', function () {
+            // ถ้าสวิตช์ถูกเลือก
+            if (toggleSwitch.checked) {
+                document.body.classList.add('dark-mode'); // เพิ่มคลาส Dark Mode
+                localStorage.setItem('theme', 'dark-mode'); // เก็บค่าธีมใน LocalStorage
+            } else {
+                document.body.classList.remove('dark-mode'); // ลบคลาส Dark Mode
+                localStorage.setItem('theme', 'light-mode'); // เก็บค่าธีมเป็น Light Mode
+            }
+        });
+    </script>
+
+    @Scripts.Render("~/bundles/jquery") <!-- รวม jQuery -->
+    @Scripts.Render("~/bundles/bootstrap") <!-- รวม Bootstrap JS -->
+    @RenderSection("scripts", required: false) <!-- แสดงสคริปต์เพิ่มเติมถ้ามี -->
+</body>
+</html>
